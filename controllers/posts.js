@@ -22,6 +22,9 @@ exports.index = async (req, res) => {
   }
   const data = await prisma.post.findMany({
     where: posts,
+    include: {
+      category: true,
+    },
   });
   return res.json(data);
 };
@@ -40,6 +43,7 @@ exports.show = async (req, res) => {
 exports.create = async (req, res) => {
   const data = req.body;
   data.slug = kebabCase(data.title);
+
   const newPost = await prisma.post.create({
     data: {
       title: data.title,
@@ -47,6 +51,7 @@ exports.create = async (req, res) => {
       image: data.image,
       content: data.content,
       published: data.published,
+      categoryId: data.categoryId,
     },
   });
   res.json(newPost);

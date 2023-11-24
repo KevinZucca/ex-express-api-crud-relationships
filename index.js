@@ -3,6 +3,7 @@ const app = express();
 const dotenv = require("dotenv").config();
 const port = process.env.PORT;
 const postsRouter = require("./routers/posts");
+const categoriesRouter = require("./routers/categories");
 const errorHandler = require("./middlewares/errorHandler");
 const notFoundRoute = require("./middlewares/notFoundRoute");
 
@@ -11,6 +12,7 @@ app.use(express.json());
 
 // routes
 app.use("/posts", postsRouter);
+app.use("/categories", categoriesRouter);
 
 // middlewares
 app.use(notFoundRoute);
