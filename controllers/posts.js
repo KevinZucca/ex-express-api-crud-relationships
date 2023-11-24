@@ -24,6 +24,7 @@ exports.index = async (req, res) => {
     where: posts,
     include: {
       category: true,
+      tags: true,
     },
   });
   return res.json(data);
@@ -52,6 +53,9 @@ exports.create = async (req, res) => {
       content: data.content,
       published: data.published,
       categoryId: data.categoryId,
+      tags: {
+        connect: data.tags.map((tag) => ({ id: tag })),
+      },
     },
   });
   res.json(newPost);
