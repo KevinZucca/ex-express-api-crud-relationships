@@ -23,6 +23,12 @@ const bodyControl = {
       options: { min: 5 },
     },
   },
+  tags: {
+    isLength: {
+      errorMessage: "There must be at least 1 tag",
+      options: { min: 1 },
+    },
+  },
 };
 
 module.exports = { paramID, bodyControl };
